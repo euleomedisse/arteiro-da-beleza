@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arteiro da Beleza | Studio Afro Salvador</title>
+    <title>Arteiro da Beleza | Studio Afro & Ancestralidade</title>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Bricolage+Grotesque:wght@300;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
@@ -88,6 +88,29 @@
         .bio-text { flex: 1 1 400px; }
         .bio-text h2 { font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--terracota); margin-bottom: 25px; }
 
+        /* --- NOVA SEÇÃO: MANIFESTO ANCESTRAL --- */
+        .manifesto {
+            padding: 120px 10%;
+            background: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .manifesto-content { max-width: 900px; margin: 0 auto; }
+        .manifesto h2 { font-size: 3rem; margin-bottom: 40px; color: var(--verde-marca); }
+        .manifesto p { font-size: 1.25rem; line-height: 1.8; margin-bottom: 30px; font-weight: 300; text-align: justify; }
+        .manifesto blockquote { 
+            font-family: 'Fraunces', serif; 
+            font-style: italic; 
+            font-size: 1.6rem; 
+            color: var(--terracota); 
+            margin: 40px 0;
+            padding: 0 10%;
+            position: relative;
+        }
+        .manifesto blockquote::before { content: "“"; font-size: 5rem; position: absolute; left: 0; top: -20px; opacity: 0.2; }
+
+        /* --- SERVIÇOS --- */
         .services { padding: 100px 5%; background: var(--palha); }
         .services h2 { text-align: center; margin-bottom: 60px; font-size: 3rem; }
         
@@ -106,7 +129,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 480px;
+            min-height: 500px;
         }
 
         .service-card:hover { transform: translateY(-10px); background: #265539; }
@@ -138,7 +161,6 @@
         }
 
         .product-img img { width: 100%; max-width: 500px; border-radius: var(--radius); }
-
         .product-info h2 { color: var(--verde-marca); font-size: 3rem; margin-bottom: 20px; }
         .tag-exclusivo { 
             display: inline-block; background: var(--terracota); color: white; 
@@ -182,6 +204,9 @@
             .carousel-item { flex: 0 0 85vw; height: 400px; }
             .hero h1 { font-size: 3.2rem; }
             .potencia-parallax { height: 30vh; }
+            .manifesto { padding: 80px 5%; }
+            .manifesto h2 { font-size: 2.2rem; }
+            .manifesto p { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -212,6 +237,21 @@
             <span>BAINIDADE 100% 🌿</span>
             <h2>Arteiro da <br>Beleza 🍂</h2>
             <p>No coração de Salvador, transformamos técnica ancestral em poder. Sob o olhar de Luan, o cuidar do cabelo é um ritual de reconexão e auto-estima preta.</p>
+        </div>
+    </section>
+
+    <section class="manifesto">
+        <div class="manifesto-content" data-aos="fade-up">
+            <h2>Por que fazemos o que fazemos?</h2>
+            <p>
+                O cabelo afro nunca foi apenas estética; é um mapa, um quilombo, um direito de existir. Fazemos o que fazemos porque acreditamos que a beleza é uma ferramenta de <strong>sentimento de pertencimento</strong> e emancipação. 
+            </p>
+            <blockquote>
+                "É preciso entender as encruzilhadas que nos atravessam para que possamos traçar nossos próprios caminhos."
+            </blockquote>
+            <p>
+                Como nos ensina <strong>Carla Akotirene</strong>, nosso trabalho é sobre a interseccionalidade das nossas vivências. Cada trança é um nó que nos prende ao futuro sem jamais esquecer o passado. No Arteiro da Beleza, reivindicamos o que <strong>Djamila Ribeiro</strong> chama de romper com o silenciamento: nossa negritude é a nossa voz, e a nossa estética é o nosso grito de liberdade. <strong>Nossa arte é política, é afeto e é realeza.</strong>
+            </p>
         </div>
     </section>
 
