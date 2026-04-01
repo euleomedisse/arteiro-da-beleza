@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arteiro da Beleza | Studio Afro Salvador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Bricolage+Grotesque:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --verde-marca: #1e432d;
+            --verde-profundo: #0d1f15;
+            --terracota: #c35b3e;
+            --palha: #f8f3ed;
+            --dourado: #d4af37;
+            --text-light: #fdf8f5;
+            --radius: 40px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: var(--palha);
+            color: var(--verde-profundo);
+            font-family: 'Bricolage Grotesque', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 700; }
+
+        .wa-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+        .wa-float img { width: 60px; height: 60px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4)); }
+
+        .header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 31, 21, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 2000;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(13, 31, 21, 0.4), rgba(13, 31, 21, 0.7)), 
+                        url('https://images.pexels.com/photos/14037647/pexels-photo-14037647.jpeg') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 5%;
+        }
+
+        .hero h1 { font-size: clamp(2.8rem, 12vw, 6rem); line-height: 0.9; margin-bottom: 15px; }
+        .hero h1 em { font-style: italic; color: var(--terracota); font-weight: 400; }
+
+        .bio {
+            background-color: var(--verde-profundo);
+            color: var(--text-light);
+            padding: 120px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .bio-image { flex: 1 1 300px; }
+        .bio-image img { 
+            width: 100%; 
+            border-radius: var(--radius); 
+            box-shadow: 15px 15px 0px var(--terracota);
+        }
+
+        .bio-text { flex: 1 1 400px; }
+        .bio-text h2 { font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--terracota); margin-bottom: 25px; }
+
+        .services { padding: 100px 5%; background: var(--palha); }
+        .services h2 { text-align: center; margin-bottom: 60px; font-size: 3rem; }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--verde-marca);
+            color: var(--text-light);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            transition: 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 450px;
+        }
+
+        .service-card:hover { transform: scale(1.02); background: #265539; }
+        .service-card h3 { font-size: 2rem; margin-bottom: 20px; }
+        .service-card ul { list-style: none; margin-bottom: 30px; opacity: 0.8; }
+        .service-card li { margin-bottom: 12px; font-weight: 300; }
+        .service-card li::before { content: "🍂"; margin-right: 10px; }
+
+        .product-section {
+            padding: 100px 5%;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .product-info h2 { color: var(--verde-marca); font-size: 3rem; margin-bottom: 20px; }
+        .tag-exclusivo { 
+            display: inline-block; 
+            background: var(--terracota); 
+            color: white; 
+            padding: 5px 15px; 
+            border-radius: 50px; 
+            font-size: 0.8rem; 
+            margin-bottom: 15px;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 18px 35px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .portfolio { padding: 100px 5%; background: var(--verde-profundo); color: white; text-align: center; }
+        .portfolio h2 { margin-bottom: 50px; }
+
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            padding: 40px 0;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        .carousel-item {
+            flex: 0 0 350px;
+            height: 500px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+        .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .carousel-text {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px;
+            text-align: left;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .nav-btn {
+            background: var(--terracota);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: auto;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer {
+            background: var(--verde-profundo);
+            color: var(--text-light);
+            padding: 80px 5% 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centralização garantida */
+            justify-content: center;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-logo { height: 60px; margin-bottom: 25px; border-radius: 50%; }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            margin: 25px 0;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--palha);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover { opacity: 1; color: var(--terracota); }
+
+        @media (max-width: 768px) {
+            .product-section { grid-template-columns: 1fr; text-align: center; }
+            .carousel-item { flex: 0 0 85vw; height: 400px; }
+            .hero h1 { font-size: 3.2rem; }
+            .service-card { padding: 40px 30px; }
+            .bio { padding: 80px 5%; }
+            .nav-btn { display: none; }
+            .footer-links { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <img src="img/logo akoma.png" alt="Logo" style="height: 40px;">
+        <span style="color: var(--palha); font-size: 0.6rem; letter-spacing: 3px;">SALVADOR // BAHIA</span>
+    </header>
+
+    <a href="https://wa.me/5571999999999" class="wa-float" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/889/889154.png" alt="WhatsApp Orçamento">
+    </a>
+
+    <section class="hero">
+        <div data-aos="zoom-out">
+            <p style="text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 20px;">Axé e Estética 🌿</p>
+            <h1>Nossa Arte é a sua <em>Coroa</em>.</h1>
+            <p>Especialistas em Tranças, Dreads e Formação Profissional 🧡</p>
+        </div>
+    </section>
+
+    <section class="bio">
+        <div class="bio-image" data-aos="fade-right">
+            <img src="img/foto-luan.jpeg" alt="Luan Arteiro">
+        </div>
+        <div class="bio-text" data-aos="fade-left">
+            <span>BAINIDADE 100% 🌿</span>
+            <h2>Arteiro da <br>Beleza 🍂</h2>
+            <p>No coração de Salvador, o Studio Arteiro é o ponto de encontro entre técnica ancestral e o futuro da beleza preta. Com o olhar atento de Luan, transformamos o cuidar do cabelo em um ritual de poder.</p>
+            <p>Somos um studio, uma escola e um hub de potência preta. Aqui, o verde da mata e o barro da terra dão o tom de um ambiente feito por nós e para nós. 🧡</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2 data-aos="fade-up">Seu Cuidado Ritual 🌿</h2>
+        <div class="service-grid">
+            <div class="service-card" data-aos="fade-up">
+                <div>
+                    <h3>Tranças & Dreads</h3>
+                    <p>O cuidado que respeita a fibra capilar e exalta sua identidade.</p>
+                </div>
+                <ul>
+                    <li>Box Braids & Nagô Criativo</li>
+                    <li>Dreadlocks (Agulha e Manual)</li>
+                    <li>Manutenção e Higienização de Raiz</li>
+                    <li>Consultoria Visual Afro</li>
+                </ul>
+                <a href="https://wa.me/5571999999999" style="color: var(--terracota); font-weight: 600; text-decoration: none;">Ver Orçamento 🧡</a>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <h3>Escola Arteiro</h3>
+                    <p>Aprenda a arte das tranças com quem vive o mercado em Salvador.</p>
+                </div>
+                <ul>
+                    <li>Curso de Tranças do Zero</li>
+                    <li>Técnicas Avançadas de Dreads</li>
+                    <li>Gestão para Empreendedores Pretos</li>
+                    <li>Workshop de Finalização Afro</li>
+                </ul>
+                <a href="https://wa.me/5571999999999" style="color: var(--terracota); font-weight: 600; text-decoration: none;">Quero ser Aluno 🍂</a>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                <div>
+                    <h3>Hub de Parcerias</h3>
+                    <p>Espaço focado em transformar ideias pretas em potência econômica.</p>
+                </div>
+                <ul>
+                    <li>Revenda Autorizada de Produtos</li>
+                    <li>Espaço para Exposição de Marcas</li>
+                    <li>Eventos e Workshops Colaborativos</li>
+                    <li>Parcerias Estratégicas</li>
+                </ul>
+                <a href="https://wa.me/5571999999999" style="color: var(--terracota); font-weight: 600; text-decoration: none;">Seja um Parceiro 🌿</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section">
+        <div class="product-img" data-aos="fade-right">
+            <img src="https://images.pexels.com/photos/18449690/pexels-photo-18449690.jpeg" alt="Shampoo Agô Ori" style="width: 100%; border-radius: var(--radius);">
+        </div>
+        <div class="product-info" data-aos="fade-left">
+            <span class="tag-exclusivo">LANÇAMENTO EXCLUSIVO 🧡</span>
+            <h2>Agô Ori Cosméticos</h2>
+            <p>O primeiro shampoo baiano pensado exclusivamente para a rotina de quem usa dreadlocks. Limpeza profunda que respeita o couro cabeludo e preserva a estrutura ancestral.</p>
+            <p style="margin-top: 20px; font-weight: 700; color: var(--terracota);">Venda exclusiva via WhatsApp. 📲</p>
+            <a href="https://wa.me/5571999999999" class="btn-buy">Comprar Agô Ori no Dendê</a>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <h2 data-aos="fade-up">A Coroa dos Nossos Clientes 🧡</h2>
+        <div class="carousel-wrapper">
+            <div class="carousel-container" id="carousel">
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/11051280/pexels-photo-11051280.jpeg" alt="Cliente 1">
+                    <div class="carousel-text">
+                        <p>"O Studio Arteiro devolveu minha autoestima."</p>
+                        <small>— Carla, Tranças Nagô</small>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/10390317/pexels-photo-10390317.jpeg" alt="Cliente 2">
+                    <div class="carousel-text">
+                        <p>"Melhor manutenção de dreads de Salvador."</p>
+                        <small>— Pedro, Dreadlocks</small>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.pexels.com/photos/11036066/pexels-photo-11036066.jpeg" alt="Cliente 3">
+                    <div class="carousel-text">
+                        <p>"Fiz o curso e hoje sou minha própria patroa."</p>
+                        <small>— Joyce, Ex-aluna</small>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="scrollCarousel(-1)">❮</button>
+                <button class="nav-btn" onclick="scrollCarousel(1)">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="img/logo-arteiro.jpeg" alt="Arteiro da Beleza" class="footer-logo">
+        <h2 style="color: var(--terracota); margin-bottom: 10px;">Arteiro da Beleza</h2>
+        <p style="max-width: 400px; opacity: 0.8;">Onde a tradição se renova e a estética preta ganha o mundo. Salvador, Bahia. 🧡🌿</p>
+        
+        <div class="footer-links">
+            <a href="#">INSTAGRAM</a>
+            <a href="#">LINKEDIN</a>
+            <a href="#">WHATSAPP</a>
+        </div>
+
+        <div style="margin-top: 40px; opacity: 0.3; font-size: 0.6rem; letter-spacing: 2px;">
+            © 2026 ARTEIRO DA BELEZA // TODOS OS DIREITOS RESERVADOS
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+
+        const carousel = document.getElementById('carousel');
+        let autoScroll = setInterval(() => {
+            if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth) {
+                carousel.scrollLeft = 0;
+            } else {
+                carousel.scrollLeft += 300;
+            }
+        }, 4000);
+
+        function scrollCarousel(dir) {
+            clearInterval(autoScroll);
+            carousel.scrollBy({ left: dir * 300, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            if (window.innerWidth > 768) {
+                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        });
+    </script>
+</body>
+</html>
